@@ -2,7 +2,7 @@
 
 <img src="https://readme-typing-svg.demolab.com/?font=Space+Grotesk&weight=700&size=42&pause=1000000&repeat=false&center=true&vCenter=true&width=500&height=60&color=FFFFFF&lines=Raihan+Zaky" alt="Raihan Zaky" />
 
-<img src="https://readme-typing-svg.demolab.com/?font=Fira+Code&weight=500&size=16&pause=1800&center=true&vCenter=true&width=650&color=00E5FF&lines=Computer+Science+Student+%C2%B7+Lab+Assistant+%C2%B7+Developer;Turning+coursework+and+side+projects+into+shipped+things" alt="Typing SVG" />
+<img src="https://readme-typing-svg.demolab.com/?font=Fira+Code&weight=500&size=16&pause=1800&center=true&vCenter=true&width=650&color=3B82F6&lines=Computer+Science+Student+%C2%B7+Lab+Assistant+%C2%B7+Developer;Turning+coursework+and+side+projects+into+shipped+things" alt="Typing SVG" />
 
 <br><br>
 
