@@ -94,12 +94,12 @@
       <stop offset="0%" stop-color="#ffffff" />
       <stop offset="100%" stop-color="#94a3b8" />
     </linearGradient>
-    <mask id="round-mask">
-      <rect width="100%" height="100%" rx="32" fill="#ffffff" />
-    </mask>
+    <clipPath id="round-corner">
+      <rect x="0" y="0" width="800" height="250" rx="32" />
+    </clipPath>
   </defs>
 
-  <g mask="url(#round-mask)">
+  <g clip-path="url(#round-corner)">
   <!-- Solid Background -->
   <rect width="100%" height="100%" class="bg" rx="32" />
   
