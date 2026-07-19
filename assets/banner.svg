@@ -1,178 +1,136 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="800" height="250" viewBox="0 0 800 250">
   <defs>
     <style>
-      @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&amp;family=Orbitron:wght@700;900&amp;display=swap');
+      @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;800&amp;display=swap');
       
-      .bg { fill: #070d17; } /* Very dark modern slate */
-      
-      /* Abstract spinning rings */
-      .ring {
-        fill: none;
-        stroke: #1e293b;
-        transform-origin: 400px 125px;
+      .bg {
+        fill: #020617; /* Very dark blue/black slate */
       }
-      .r1 { stroke-width: 1; stroke-dasharray: 4 6; animation: spin 40s linear infinite; }
-      .r2 { stroke-width: 2; stroke-dasharray: 20 15; animation: spin 25s linear infinite reverse; opacity: 0.5; }
-      .r3 { stroke-width: 1; stroke-dasharray: 100 30; animation: spin 50s linear infinite; opacity: 0.3; }
-      .r4 { stroke-width: 3; stroke-dasharray: 1 10; stroke: #38bdf8; animation: spin 30s linear infinite; opacity: 0.2; }
       
+      /* Floating Aurora Orbs */
+      .orb {
+        filter: url(#blur-filter);
+        animation: float 25s ease-in-out infinite alternate;
+      }
+      .orb-1 { fill: #9333ea; animation-delay: 0s; animation-duration: 25s; } /* Purple */
+      .orb-2 { fill: #06b6d4; animation-delay: -5s; animation-duration: 30s; } /* Cyan */
+      .orb-3 { fill: #4f46e5; animation-delay: -15s; animation-duration: 22s; } /* Indigo */
+      .orb-4 { fill: #38bdf8; animation-delay: -10s; animation-duration: 28s; } /* Sky Blue */
+      
+      @keyframes float {
+        0% { transform: translate(0, 0) scale(1); }
+        33% { transform: translate(150px, -50px) scale(1.2); }
+        66% { transform: translate(-100px, 100px) scale(0.9); }
+        100% { transform: translate(-50px, -150px) scale(1.1); }
+      }
+      
+      /* Typography */
+      .title {
+        font-family: 'Plus Jakarta Sans', sans-serif;
+        font-size: 64px;
+        font-weight: 800;
+        fill: url(#text-grad);
+        text-anchor: middle;
+        letter-spacing: -1px;
+        animation: fadeUp 2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+      }
+      
+      .subtitle {
+        font-family: 'Plus Jakarta Sans', sans-serif;
+        font-size: 18px;
+        font-weight: 500;
+        fill: #e2e8f0;
+        text-anchor: middle;
+        letter-spacing: 0.5px;
+        opacity: 0;
+        animation: fadeUp 2s cubic-bezier(0.16, 1, 0.3, 1) 0.5s forwards;
+      }
+      
+      .dot {
+        fill: #38bdf8;
+        font-size: 22px;
+        animation: pulseDot 2s ease-in-out infinite alternate;
+      }
+      
+      @keyframes pulseDot {
+        0% { opacity: 0.4; }
+        100% { opacity: 1; filter: drop-shadow(0 0 6px #38bdf8); }
+      }
+      
+      @keyframes fadeUp {
+        0% { opacity: 0; transform: translateY(20px); }
+        100% { opacity: 1; transform: translateY(0); }
+      }
+
+      /* Floating Ambient Stars / Dust */
+      .star {
+        fill: #ffffff;
+        animation: twinkle 4s infinite alternate;
+      }
+      @keyframes twinkle {
+        0%, 100% { opacity: 0.1; transform: scale(0.6); }
+        50% { opacity: 0.8; transform: scale(1.2); filter: drop-shadow(0 0 3px #fff); }
+      }
+
+      /* Slow rotating geometric decoration */
+      .geo {
+        fill: none;
+        stroke: rgba(255, 255, 255, 0.05);
+        stroke-width: 1;
+        animation: spin 40s linear infinite;
+        transform-origin: center;
+      }
       @keyframes spin {
         100% { transform: rotate(360deg); }
       }
-
-      /* Moving Data Packets */
-      .packet-track { stroke: #0f172a; stroke-width: 1.5; }
-      .packet {
-        fill: #00e5ff;
-        animation: travel 4s ease-in-out infinite;
-      }
-      .p2 { fill: #38bdf8; animation: travel 5s linear infinite; animation-delay: -2s; }
-      .p3 { fill: #00e5ff; animation: travel 3.5s ease-in-out infinite; animation-delay: -1s; }
-      
-      @keyframes travel {
-        0% { transform: translateX(-50px); opacity: 0; }
-        20% { opacity: 1; filter: drop-shadow(0 0 4px #00e5ff); }
-        80% { opacity: 1; filter: drop-shadow(0 0 4px #00e5ff); }
-        100% { transform: translateX(850px); opacity: 0; }
-      }
-
-      /* Main Title */
-      .title {
-        font-family: 'Orbitron', sans-serif;
-        font-size: 58px;
-        font-weight: 900;
-        fill: #ffffff;
-        text-anchor: middle;
-        letter-spacing: 6px;
-      }
-      
-      /* Neon Outline Title Animation */
-      .title-glow {
-        fill: none;
-        stroke: #00e5ff;
-        stroke-width: 2;
-        stroke-dasharray: 500;
-        stroke-dashoffset: 500;
-        animation: drawPath 6s ease-in-out infinite;
-        filter: drop-shadow(0 0 5px #00e5ff);
-      }
-      
-      @keyframes drawPath {
-        0%, 15% { stroke-dashoffset: 500; opacity: 0; }
-        40%, 60% { stroke-dashoffset: 0; opacity: 1; }
-        85%, 100% { stroke-dashoffset: -500; opacity: 0; }
-      }
-
-      /* Subtitle Typing Animation */
-      .subtitle {
-        font-family: 'Fira Code', monospace;
-        font-size: 16px;
-        fill: #38bdf8;
-        text-anchor: start;
-        letter-spacing: 0px;
-        clip-path: url(#type-mask);
-      }
-      
-      .type-rect {
-        width: 0;
-        animation: type 6s steps(54, end) infinite;
-      }
-      
-      .cursor {
-        fill: #00e5ff;
-        animation: moveCursor 6s steps(54, end) infinite, blink 0.8s step-end infinite;
-      }
-      
-      @keyframes type {
-        0%, 15% { width: 0; }
-        70%, 90% { width: 525px; } /* Text length */
-        100% { width: 0; }
-      }
-      
-      @keyframes moveCursor {
-        0%, 15% { transform: translateX(0); opacity: 1; }
-        70%, 90% { transform: translateX(520px); opacity: 1; }
-        100% { transform: translateX(0); opacity: 0; }
-      }
-      
-      @keyframes blink { 50% { opacity: 0; } }
-
-      /* Scanning Laser Line */
-      .scanner {
-        fill: url(#scan-grad);
-        opacity: 0.4;
-        animation: scan 4s linear infinite;
-        mix-blend-mode: screen;
-      }
-      
-      @keyframes scan {
-        0% { transform: translateY(-100px); }
-        100% { transform: translateY(350px); }
-      }
-      
-      /* Background ambient light */
-      .ambient {
-        fill: url(#ambient-grad);
-        opacity: 0.3;
-      }
     </style>
     
-    <clipPath id="type-mask">
-      <rect x="0" y="-20" height="30" class="type-rect" />
-    </clipPath>
+    <!-- Extreme Blur for Aurora Effect -->
+    <filter id="blur-filter" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="55" />
+    </filter>
     
-    <linearGradient id="scan-grad" x1="0%" y1="0%" x2="0%" y2="100%">
-      <stop offset="0%" stop-color="#00e5ff" stop-opacity="0" />
-      <stop offset="80%" stop-color="#00e5ff" stop-opacity="0.1" />
-      <stop offset="100%" stop-color="#00e5ff" stop-opacity="0.8" />
+    <linearGradient id="text-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff" />
+      <stop offset="100%" stop-color="#94a3b8" />
     </linearGradient>
-    
-    <radialGradient id="ambient-grad" cx="50%" cy="50%" r="50%">
-      <stop offset="0%" stop-color="#1e3a8a" stop-opacity="0.8" />
-      <stop offset="100%" stop-color="#070d17" stop-opacity="0" />
-    </radialGradient>
   </defs>
 
-  <!-- Background Layer -->
-  <rect width="100%" height="100%" class="bg" rx="10" />
-  <rect width="100%" height="100%" class="ambient" rx="10" />
-
-  <!-- Animated Concentric Rings (Radar/Node aesthetic) -->
-  <circle cx="400" cy="125" r="280" class="ring r1" />
-  <circle cx="400" cy="125" r="230" class="ring r2" />
-  <circle cx="400" cy="125" r="180" class="ring r3" />
-  <circle cx="400" cy="125" r="130" class="ring r4" />
+  <!-- Solid Background -->
+  <rect width="100%" height="100%" class="bg" rx="12" />
   
-  <!-- Horizontal Data Tracks -->
-  <line x1="0" y1="40" x2="800" y2="40" class="packet-track" />
-  <line x1="0" y1="210" x2="800" y2="210" class="packet-track" />
-  <line x1="0" y1="180" x2="800" y2="180" class="packet-track" stroke-opacity="0.3" />
-  
-  <rect x="0" y="38" width="8" height="4" rx="2" class="packet" />
-  <circle cx="0" cy="210" r="3" class="packet p2" />
-  <rect x="0" y="179" width="15" height="2" class="packet p3" />
-
-  <!-- Typography -->
-  <g transform="translate(0, 15)">
-    <!-- Base text -->
-    <text x="400" y="115" class="title">RAIHAN ZAKY</text>
-    
-    <!-- Neon animated outline -->
-    <text x="400" y="115" class="title title-glow">RAIHAN ZAKY</text>
-    
-    <!-- Typing Subtitle -->
-    <g transform="translate(140, 165)">
-      <!-- The text that gets revealed -->
-      <text x="0" y="0" class="subtitle">&gt; Computer Science Student <tspan fill="#64748b">|</tspan> Developer <tspan fill="#64748b">|</tspan> Lab Assistant</text>
-      
-      <!-- The blinking cursor that moves -->
-      <rect x="0" y="-14" width="10" height="18" class="cursor" />
-    </g>
+  <!-- Aurora Orbs Background -->
+  <g opacity="0.65">
+    <circle cx="150" cy="50" r="130" class="orb orb-1" />
+    <circle cx="650" cy="220" r="140" class="orb orb-2" />
+    <circle cx="700" cy="-20" r="110" class="orb orb-3" />
+    <circle cx="100" cy="260" r="120" class="orb orb-4" />
+    <circle cx="400" cy="125" r="150" class="orb orb-3" style="animation-duration: 35s; opacity: 0.5;" />
   </g>
   
-  <!-- Scanning overlay (goes over everything) -->
-  <rect width="800" height="50" class="scanner" />
+  <!-- Abstract Geometric overlay (barely visible) -->
+  <circle cx="400" cy="125" r="300" class="geo" stroke-dasharray="2 10" />
+  <circle cx="400" cy="125" r="250" class="geo" stroke-dasharray="20 40" style="animation-direction: reverse; animation-duration: 60s;" />
+
+  <!-- Twinkling Stars / Dust Particles -->
+  <circle cx="80" cy="150" r="2" class="star" style="animation-delay: 0s; animation-duration: 3s;" />
+  <circle cx="250" cy="60" r="1.5" class="star" style="animation-delay: 1s; animation-duration: 4s;" />
+  <circle cx="650" cy="120" r="2.5" class="star" style="animation-delay: 2s; animation-duration: 5s;" />
+  <circle cx="720" cy="200" r="1" class="star" style="animation-delay: 0.5s; animation-duration: 3.5s;" />
+  <circle cx="150" cy="220" r="2" class="star" style="animation-delay: 1.5s; animation-duration: 2s;" />
+  <circle cx="420" cy="40" r="1.5" class="star" style="animation-delay: 0.2s; animation-duration: 4.5s;" />
+  <circle cx="580" cy="230" r="2" class="star" style="animation-delay: 2.5s; animation-duration: 3.2s;" />
+  <circle cx="350" cy="180" r="1.5" class="star" style="animation-delay: 0.8s; animation-duration: 2.8s;" />
+
+  <!-- Typography -->
+  <g>
+    <text x="400" y="130" class="title">Raihan Zaky</text>
+    
+    <text x="400" y="175" class="subtitle">
+      Computer Science Student <tspan class="dot">•</tspan> Developer <tspan class="dot">•</tspan> Lab Assistant
+    </text>
+  </g>
   
-  <!-- Outer border -->
-  <rect width="100%" height="100%" fill="none" stroke="#1e293b" stroke-width="2" rx="10" />
+  <!-- Subtle glass border -->
+  <rect width="100%" height="100%" fill="none" stroke="rgba(255,255,255,0.15)" stroke-width="1.5" rx="12" />
 </svg>
