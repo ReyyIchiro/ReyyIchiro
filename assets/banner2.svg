@@ -1,0 +1,178 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="250" viewBox="0 0 800 250">
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&amp;family=Orbitron:wght@700;900&amp;display=swap');
+      
+      .bg { fill: #070d17; } /* Very dark modern slate */
+      
+      /* Abstract spinning rings */
+      .ring {
+        fill: none;
+        stroke: #1e293b;
+        transform-origin: 400px 125px;
+      }
+      .r1 { stroke-width: 1; stroke-dasharray: 4 6; animation: spin 40s linear infinite; }
+      .r2 { stroke-width: 2; stroke-dasharray: 20 15; animation: spin 25s linear infinite reverse; opacity: 0.5; }
+      .r3 { stroke-width: 1; stroke-dasharray: 100 30; animation: spin 50s linear infinite; opacity: 0.3; }
+      .r4 { stroke-width: 3; stroke-dasharray: 1 10; stroke: #38bdf8; animation: spin 30s linear infinite; opacity: 0.2; }
+      
+      @keyframes spin {
+        100% { transform: rotate(360deg); }
+      }
+
+      /* Moving Data Packets */
+      .packet-track { stroke: #0f172a; stroke-width: 1.5; }
+      .packet {
+        fill: #00e5ff;
+        animation: travel 4s ease-in-out infinite;
+      }
+      .p2 { fill: #38bdf8; animation: travel 5s linear infinite; animation-delay: -2s; }
+      .p3 { fill: #00e5ff; animation: travel 3.5s ease-in-out infinite; animation-delay: -1s; }
+      
+      @keyframes travel {
+        0% { transform: translateX(-50px); opacity: 0; }
+        20% { opacity: 1; filter: drop-shadow(0 0 4px #00e5ff); }
+        80% { opacity: 1; filter: drop-shadow(0 0 4px #00e5ff); }
+        100% { transform: translateX(850px); opacity: 0; }
+      }
+
+      /* Main Title */
+      .title {
+        font-family: 'Orbitron', sans-serif;
+        font-size: 58px;
+        font-weight: 900;
+        fill: #ffffff;
+        text-anchor: middle;
+        letter-spacing: 6px;
+      }
+      
+      /* Neon Outline Title Animation */
+      .title-glow {
+        fill: none;
+        stroke: #00e5ff;
+        stroke-width: 2;
+        stroke-dasharray: 500;
+        stroke-dashoffset: 500;
+        animation: drawPath 6s ease-in-out infinite;
+        filter: drop-shadow(0 0 5px #00e5ff);
+      }
+      
+      @keyframes drawPath {
+        0%, 15% { stroke-dashoffset: 500; opacity: 0; }
+        40%, 60% { stroke-dashoffset: 0; opacity: 1; }
+        85%, 100% { stroke-dashoffset: -500; opacity: 0; }
+      }
+
+      /* Subtitle Typing Animation */
+      .subtitle {
+        font-family: 'Fira Code', monospace;
+        font-size: 16px;
+        fill: #38bdf8;
+        text-anchor: start;
+        letter-spacing: 0px;
+        clip-path: url(#type-mask);
+      }
+      
+      .type-rect {
+        width: 0;
+        animation: type 6s steps(54, end) infinite;
+      }
+      
+      .cursor {
+        fill: #00e5ff;
+        animation: moveCursor 6s steps(54, end) infinite, blink 0.8s step-end infinite;
+      }
+      
+      @keyframes type {
+        0%, 15% { width: 0; }
+        70%, 90% { width: 525px; } /* Text length */
+        100% { width: 0; }
+      }
+      
+      @keyframes moveCursor {
+        0%, 15% { transform: translateX(0); opacity: 1; }
+        70%, 90% { transform: translateX(520px); opacity: 1; }
+        100% { transform: translateX(0); opacity: 0; }
+      }
+      
+      @keyframes blink { 50% { opacity: 0; } }
+
+      /* Scanning Laser Line */
+      .scanner {
+        fill: url(#scan-grad);
+        opacity: 0.4;
+        animation: scan 4s linear infinite;
+        mix-blend-mode: screen;
+      }
+      
+      @keyframes scan {
+        0% { transform: translateY(-100px); }
+        100% { transform: translateY(350px); }
+      }
+      
+      /* Background ambient light */
+      .ambient {
+        fill: url(#ambient-grad);
+        opacity: 0.3;
+      }
+    </style>
+    
+    <clipPath id="type-mask">
+      <rect x="0" y="-20" height="30" class="type-rect" />
+    </clipPath>
+    
+    <linearGradient id="scan-grad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#00e5ff" stop-opacity="0" />
+      <stop offset="80%" stop-color="#00e5ff" stop-opacity="0.1" />
+      <stop offset="100%" stop-color="#00e5ff" stop-opacity="0.8" />
+    </linearGradient>
+    
+    <radialGradient id="ambient-grad" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#1e3a8a" stop-opacity="0.8" />
+      <stop offset="100%" stop-color="#070d17" stop-opacity="0" />
+    </radialGradient>
+  </defs>
+
+  <!-- Background Layer -->
+  <rect width="100%" height="100%" class="bg" rx="10" />
+  <rect width="100%" height="100%" class="ambient" rx="10" />
+
+  <!-- Animated Concentric Rings (Radar/Node aesthetic) -->
+  <circle cx="400" cy="125" r="280" class="ring r1" />
+  <circle cx="400" cy="125" r="230" class="ring r2" />
+  <circle cx="400" cy="125" r="180" class="ring r3" />
+  <circle cx="400" cy="125" r="130" class="ring r4" />
+  
+  <!-- Horizontal Data Tracks -->
+  <line x1="0" y1="40" x2="800" y2="40" class="packet-track" />
+  <line x1="0" y1="210" x2="800" y2="210" class="packet-track" />
+  <line x1="0" y1="180" x2="800" y2="180" class="packet-track" stroke-opacity="0.3" />
+  
+  <rect x="0" y="38" width="8" height="4" rx="2" class="packet" />
+  <circle cx="0" cy="210" r="3" class="packet p2" />
+  <rect x="0" y="179" width="15" height="2" class="packet p3" />
+
+  <!-- Typography -->
+  <g transform="translate(0, 15)">
+    <!-- Base text -->
+    <text x="400" y="115" class="title">RAIHAN ZAKY</text>
+    
+    <!-- Neon animated outline -->
+    <text x="400" y="115" class="title title-glow">RAIHAN ZAKY</text>
+    
+    <!-- Typing Subtitle -->
+    <g transform="translate(140, 165)">
+      <!-- The text that gets revealed -->
+      <text x="0" y="0" class="subtitle">&gt; Computer Science Student <tspan fill="#64748b">|</tspan> Developer <tspan fill="#64748b">|</tspan> Lab Assistant</text>
+      
+      <!-- The blinking cursor that moves -->
+      <rect x="0" y="-14" width="10" height="18" class="cursor" />
+    </g>
+  </g>
+  
+  <!-- Scanning overlay (goes over everything) -->
+  <rect width="800" height="50" class="scanner" />
+  
+  <!-- Outer border -->
+  <rect width="100%" height="100%" fill="none" stroke="#1e293b" stroke-width="2" rx="10" />
+</svg>
