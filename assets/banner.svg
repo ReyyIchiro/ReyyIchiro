@@ -3,149 +3,176 @@
     <style>
       @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&amp;family=Orbitron:wght@700;900&amp;display=swap');
       
-      .bg-rect { fill: #0d1117; }
+      .bg { fill: #070d17; } /* Very dark modern slate */
       
-      .grid-line {
+      /* Abstract spinning rings */
+      .ring {
+        fill: none;
         stroke: #1e293b;
-        stroke-width: 1.5;
+        transform-origin: 400px 125px;
       }
+      .r1 { stroke-width: 1; stroke-dasharray: 4 6; animation: spin 40s linear infinite; }
+      .r2 { stroke-width: 2; stroke-dasharray: 20 15; animation: spin 25s linear infinite reverse; opacity: 0.5; }
+      .r3 { stroke-width: 1; stroke-dasharray: 100 30; animation: spin 50s linear infinite; opacity: 0.3; }
+      .r4 { stroke-width: 3; stroke-dasharray: 1 10; stroke: #38bdf8; animation: spin 30s linear infinite; opacity: 0.2; }
       
-      .name {
+      @keyframes spin {
+        100% { transform: rotate(360deg); }
+      }
+
+      /* Moving Data Packets */
+      .packet-track { stroke: #0f172a; stroke-width: 1.5; }
+      .packet {
+        fill: #00e5ff;
+        animation: travel 4s ease-in-out infinite;
+      }
+      .p2 { fill: #38bdf8; animation: travel 5s linear infinite; animation-delay: -2s; }
+      .p3 { fill: #00e5ff; animation: travel 3.5s ease-in-out infinite; animation-delay: -1s; }
+      
+      @keyframes travel {
+        0% { transform: translateX(-50px); opacity: 0; }
+        20% { opacity: 1; filter: drop-shadow(0 0 4px #00e5ff); }
+        80% { opacity: 1; filter: drop-shadow(0 0 4px #00e5ff); }
+        100% { transform: translateX(850px); opacity: 0; }
+      }
+
+      /* Main Title */
+      .title {
         font-family: 'Orbitron', sans-serif;
-        font-size: 64px;
+        font-size: 58px;
         font-weight: 900;
         fill: #ffffff;
         text-anchor: middle;
-        letter-spacing: 4px;
+        letter-spacing: 6px;
       }
       
-      .name-glow {
-        font-family: 'Orbitron', sans-serif;
-        font-size: 64px;
-        font-weight: 900;
-        fill: #00e5ff;
-        text-anchor: middle;
-        letter-spacing: 4px;
-        filter: url(#glow);
-        animation: pulseGlow 2s infinite alternate;
+      /* Neon Outline Title Animation */
+      .title-glow {
+        fill: none;
+        stroke: #00e5ff;
+        stroke-width: 2;
+        stroke-dasharray: 500;
+        stroke-dashoffset: 500;
+        animation: drawPath 6s ease-in-out infinite;
+        filter: drop-shadow(0 0 5px #00e5ff);
       }
       
-      @keyframes pulseGlow {
-        0% { opacity: 0.3; }
-        100% { opacity: 0.8; }
+      @keyframes drawPath {
+        0%, 15% { stroke-dashoffset: 500; opacity: 0; }
+        40%, 60% { stroke-dashoffset: 0; opacity: 1; }
+        85%, 100% { stroke-dashoffset: -500; opacity: 0; }
       }
-      
+
+      /* Subtitle Typing Animation */
       .subtitle {
         font-family: 'Fira Code', monospace;
-        font-size: 17px;
+        font-size: 16px;
         fill: #38bdf8;
-        text-anchor: middle;
-        letter-spacing: 1px;
+        text-anchor: start;
+        letter-spacing: 0px;
+        clip-path: url(#type-mask);
+      }
+      
+      .type-rect {
+        width: 0;
+        animation: type 6s steps(54, end) infinite;
       }
       
       .cursor {
         fill: #00e5ff;
-        animation: blink 1s step-end infinite;
+        animation: moveCursor 6s steps(54, end) infinite, blink 0.8s step-end infinite;
       }
+      
+      @keyframes type {
+        0%, 15% { width: 0; }
+        70%, 90% { width: 525px; } /* Text length */
+        100% { width: 0; }
+      }
+      
+      @keyframes moveCursor {
+        0%, 15% { transform: translateX(0); opacity: 1; }
+        70%, 90% { transform: translateX(520px); opacity: 1; }
+        100% { transform: translateX(0); opacity: 0; }
+      }
+      
       @keyframes blink { 50% { opacity: 0; } }
-      
-      .circuit {
-        stroke: #00e5ff;
-        stroke-width: 2.5;
-        fill: none;
-        stroke-dasharray: 400;
-        stroke-dashoffset: 400;
-        animation: drawCircuit 4s ease-in-out infinite alternate;
-      }
-      @keyframes drawCircuit {
-        0% { stroke-dashoffset: 400; }
-        100% { stroke-dashoffset: 0; }
+
+      /* Scanning Laser Line */
+      .scanner {
+        fill: url(#scan-grad);
+        opacity: 0.4;
+        animation: scan 4s linear infinite;
+        mix-blend-mode: screen;
       }
       
-      .node {
-        fill: #3b82f6;
-        animation: pulseNode 2s infinite alternate;
-      }
-      @keyframes pulseNode {
-        0% { r: 3; opacity: 0.5; }
-        100% { r: 6; opacity: 1; fill: #00e5ff; }
+      @keyframes scan {
+        0% { transform: translateY(-100px); }
+        100% { transform: translateY(350px); }
       }
       
-      .bracket {
-        fill: #475569;
-        font-family: 'Fira Code', monospace;
-        font-size: 24px;
-        font-weight: bold;
-      }
-      
-      .code-bg {
-        font-family: 'Fira Code', monospace;
-        font-size: 11px;
-        fill: #1e293b;
-        opacity: 0.6;
-        animation: scrollUp 25s linear infinite;
-      }
-      @keyframes scrollUp {
-        0% { transform: translateY(0); }
-        100% { transform: translateY(-100px); }
+      /* Background ambient light */
+      .ambient {
+        fill: url(#ambient-grad);
+        opacity: 0.3;
       }
     </style>
     
-    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
-      <feGaussianBlur stdDeviation="8" result="blur" />
-      <feComposite in="SourceGraphic" in2="blur" operator="over" />
-    </filter>
+    <clipPath id="type-mask">
+      <rect x="0" y="-20" height="30" class="type-rect" />
+    </clipPath>
     
-    <pattern id="gridPattern" width="40" height="40" patternUnits="userSpaceOnUse">
-      <path d="M 40 0 L 0 0 0 40" fill="none" class="grid-line"/>
-    </pattern>
+    <linearGradient id="scan-grad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#00e5ff" stop-opacity="0" />
+      <stop offset="80%" stop-color="#00e5ff" stop-opacity="0.1" />
+      <stop offset="100%" stop-color="#00e5ff" stop-opacity="0.8" />
+    </linearGradient>
+    
+    <radialGradient id="ambient-grad" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#1e3a8a" stop-opacity="0.8" />
+      <stop offset="100%" stop-color="#070d17" stop-opacity="0" />
+    </radialGradient>
   </defs>
 
-  <!-- Background -->
-  <rect width="100%" height="100%" class="bg-rect" rx="8" />
+  <!-- Background Layer -->
+  <rect width="100%" height="100%" class="bg" rx="10" />
+  <rect width="100%" height="100%" class="ambient" rx="10" />
+
+  <!-- Animated Concentric Rings (Radar/Node aesthetic) -->
+  <circle cx="400" cy="125" r="280" class="ring r1" />
+  <circle cx="400" cy="125" r="230" class="ring r2" />
+  <circle cx="400" cy="125" r="180" class="ring r3" />
+  <circle cx="400" cy="125" r="130" class="ring r4" />
   
-  <!-- Grid -->
-  <rect width="100%" height="100%" fill="url(#gridPattern)" rx="8" opacity="0.6"/>
+  <!-- Horizontal Data Tracks -->
+  <line x1="0" y1="40" x2="800" y2="40" class="packet-track" />
+  <line x1="0" y1="210" x2="800" y2="210" class="packet-track" />
+  <line x1="0" y1="180" x2="800" y2="180" class="packet-track" stroke-opacity="0.3" />
+  
+  <rect x="0" y="38" width="8" height="4" rx="2" class="packet" />
+  <circle cx="0" cy="210" r="3" class="packet p2" />
+  <rect x="0" y="179" width="15" height="2" class="packet p3" />
 
-  <!-- Code Background Matrix-style -->
-  <g class="code-bg">
-    <text x="50" y="50">const profile = new Developer("Raihan");</text>
-    <text x="600" y="90">import { ML } from 'tensorflow';</text>
-    <text x="100" y="200">docker-compose up -d --build</text>
-    <text x="620" y="220">while(coffee) { keepCoding(); }</text>
-    <text x="40" y="150">SELECT * FROM side_projects;</text>
-    <text x="520" y="40">System.out.println("Hello World!"); </text>
+  <!-- Typography -->
+  <g transform="translate(0, 15)">
+    <!-- Base text -->
+    <text x="400" y="115" class="title">RAIHAN ZAKY</text>
     
-    <text x="50" y="150">const profile = new Developer("Raihan");</text>
-    <text x="600" y="190">import { ML } from 'tensorflow';</text>
-    <text x="100" y="300">docker-compose up -d --build</text>
-    <text x="620" y="320">while(coffee) { keepCoding(); }</text>
-    <text x="40" y="250">SELECT * FROM side_projects;</text>
-    <text x="520" y="140">System.out.println("Hello World!"); </text>
-  </g>
-
-  <!-- Circuit Lines Left -->
-  <path class="circuit" d="M -20 125 L 50 125 L 80 95 L 150 95 L 180 125 L 220 125" />
-  <circle cx="220" cy="125" r="4" class="node" />
-  <circle cx="150" cy="95" r="3" class="node" style="animation-delay: 0.5s;" />
-
-  <!-- Circuit Lines Right -->
-  <path class="circuit" d="M 820 125 L 750 125 L 720 155 L 650 155 L 620 125 L 580 125" />
-  <circle cx="580" cy="125" r="4" class="node" />
-  <circle cx="650" cy="155" r="3" class="node" style="animation-delay: 1s;" />
-
-  <!-- Main Text -->
-  <g transform="translate(0, 10)">
-    <!-- Glowing shadow layer -->
-    <text x="400" y="125" class="name-glow">RAIHAN ZAKY</text>
-    <!-- Sharp crisp top layer -->
-    <text x="400" y="125" class="name">RAIHAN ZAKY</text>
+    <!-- Neon animated outline -->
+    <text x="400" y="115" class="title title-glow">RAIHAN ZAKY</text>
     
-    <!-- Subtitle -->
-    <text x="400" y="165" class="subtitle">
-      <tspan class="bracket">&lt;</tspan>
-      Computer Science Student <tspan fill="#475569">|</tspan> Developer <tspan fill="#475569">|</tspan> Lab Assistant 
-      <tspan class="bracket">/&gt;</tspan><tspan class="cursor">_</tspan>
-    </text>
+    <!-- Typing Subtitle -->
+    <g transform="translate(140, 165)">
+      <!-- The text that gets revealed -->
+      <text x="0" y="0" class="subtitle">&gt; Computer Science Student <tspan fill="#64748b">|</tspan> Developer <tspan fill="#64748b">|</tspan> Lab Assistant</text>
+      
+      <!-- The blinking cursor that moves -->
+      <rect x="0" y="-14" width="10" height="18" class="cursor" />
+    </g>
   </g>
+  
+  <!-- Scanning overlay (goes over everything) -->
+  <rect width="800" height="50" class="scanner" />
+  
+  <!-- Outer border -->
+  <rect width="100%" height="100%" fill="none" stroke="#1e293b" stroke-width="2" rx="10" />
 </svg>
