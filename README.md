@@ -30,34 +30,6 @@
 
 <br>
 
-### 🚀 Selected Works
-
-**academic-service-chatbot**
-> RAG chatbot for university queries — my undergrad thesis project
-> <sub>*Python, LangChain, ChromaDB*</sub>
-
-**batik-motif-classification**
-> ML classifier for traditional Indonesian batik motifs
-> <sub>*Python, Flask, scikit-learn*</sub>
-
-**cvision-ai**
-> Real-time object detection with a modern web UI
-> <sub>*React, OpenCV*</sub>
-
-**personal-ai-infra-stack**
-> Self-hosted LLM + vector DB pipeline on my home server
-> <sub>*Docker, Linux, Ollama*</sub>
-
-**unpak-discord-bot**
-> Academic + entertainment bot for my student community
-> <sub>*Node.js, Discord.js*</sub>
-
-**ngalalana**
-> Gamified mobile app for learning Sundanese script
-> <sub>*Figma, UI/UX*</sub>
-
-<br>
-
 ### 🛠️ Technologies & Tools
 
 **Languages**<br>
