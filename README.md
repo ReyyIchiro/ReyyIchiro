@@ -11,17 +11,9 @@
 
 I'm a Computer Science student at Universitas Pakuan. I build end-to-end — ML models, web apps, and the Linux servers they run on. Most of it starts with a real problem and ends with something people can actually use.
 
-<sub>More projects on my <a href="https://raihanzaky.my.id">portfolio</a> →</sub>
-
 ### Toolbox
 
 **Languages** — Python · TypeScript · JavaScript · PHP · Dart · Rust · SQL\
 **Web** — React · Next.js · Node.js · Laravel · Flask · FastAPI · Tailwind CSS\
 **AI & data** — PyTorch · TensorFlow · scikit-learn · OpenCV · Pandas · LangChain · Ollama\
 **Infra & tools** — Docker · Linux · Nginx · PostgreSQL · MySQL · Supabase · Google Cloud · Figma
-
----
-
-<div align="center">
-  <img src="https://raw.githubusercontent.com/reyyichiro/reyyichiro/snake-output/snake.svg" alt="Contribution graph snake animation" />
-</div>
