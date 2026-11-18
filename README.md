@@ -11,25 +11,6 @@
 
 I'm a Computer Science student at Universitas Pakuan. I build end-to-end — ML models, web apps, and the Linux servers they run on. Most of it starts with a real problem and ends with something people can actually use.
 
-### Now
-
-- Building **RadialDeck** — a radial file-conversion and actions overlay for KDE Plasma, written in Rust.
-- Running a self-hosted AI stack at home: Docker, Tailscale, local LLMs, and a growing pile of YAML.
-- Teaching assistant at Labkom Maroon, Universitas Pakuan — AI, web technology, and databases.
-- Open to a **software / web development internship**.
-
-### Selected work
-
-**[RadialDeck](https://github.com/ReyyIchiro/radialdeck)** — Radial file-conversion and actions overlay for KDE Plasma. Ten format categories, 26 tools, keyboard-first. `Rust` `GTK4` `Wayland`
-
-**[Aksaraku](https://aksaraku.vercel.app)** — RAG-based AI mentor for learning Javanese script, with a multi-role school portal. `FastAPI` `Gemini` `Supabase` · [source](https://github.com/ReyyIchiro/project-necad)
-
-**[Batik Motif Classification](https://github.com/ReyyIchiro/batik-motif-classification)** — GLCM texture features and an SVM to classify Indonesian batik motifs, served through Flask. `Python` `scikit-learn` `Flask`
-
-**[Workspace Bar](https://github.com/ReyyIchiro/workspace-bar-kde-plasma)** — KDE Plasma 6 widget that brings GNOME's workspace bar to Plasma: desktop pills with live window icons. `QML` `Plasma 6`
-
-<sub>In private repos: Next.js/Laravel client apps, attendance, a RAG academic chatbot, and Discord infrastructure. Happy to walk through them.</sub>
-
 <sub>More projects on my <a href="https://raihanzaky.my.id">portfolio</a> →</sub>
 
 ### Toolbox
